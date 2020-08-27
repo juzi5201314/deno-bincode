@@ -4,3 +4,5 @@ Cargo.lock
 bin/
 wasm-pack.log
 .idea
+pkg/.gitignore
+pkg/README.md
