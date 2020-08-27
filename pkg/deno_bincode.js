@@ -191,9 +191,12 @@ const url = new URL(import.meta.url)
 let wasmCode = ''
 if (url.protocol.includes('file')) {
     let file = new URL(import.meta.url).pathname;
-    if (Deno.build.os === 'windows' && file.startsWith('/'))
-    file = file.substr(1)
-    file = Deno.realPathSync(file + '/../deno_bincode_bg.wasm')
+    if (Deno.build.os === 'windows') {
+        if (file.startsWith('/')) file = file.substr(1)
+        file = Deno.realPathSync(file + '/../deno_bincode_bg.wasm')
+    } else {
+        file = file.substring(0, file.lastIndexOf('/') + 1) + 'deno_bincode_bg.wasm'
+    }
     wasmCode = Deno.readFileSync(file)
 } else if (url.protocol.includes('http')) {
     const wasm_url = import.meta.url.substring(0, import.meta.url.lastIndexOf('/') + 1) + 'deno_bincode_bg.wasm'
