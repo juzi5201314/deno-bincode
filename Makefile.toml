@@ -1,0 +1,8 @@
+[tasks.wasm-pack]
+command = "wasm-pack"
+args = ["build", "--target=deno"]
+
+[tasks.build]
+dependencies = [
+    "wasm-pack"
+]

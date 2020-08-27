@@ -1,0 +1,1 @@
+export { decode, encode } from './pkg/deno_bincode.js'
