@@ -186,6 +186,7 @@ const imports = {
 
 };
 
+console.log(import.meta.url)
 let file = new URL(import.meta.url).pathname;
 if (Deno.build.os === 'windows' && file.startsWith('/'))
 file = file.substr(1)
